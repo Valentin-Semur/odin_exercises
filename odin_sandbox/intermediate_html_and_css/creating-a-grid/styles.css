@@ -1,0 +1,84 @@
+body div,
+body div div {
+    border: 1px solid;
+}
+
+.container1 {
+    display: grid;
+    /* grid-template-columns: 50px 50px 50px; */
+    /* grid-template-rows: 50px 50px; */
+    grid-template: 50px 50px / 50px 50px; /* grid-template-rows / grid-template-columns */
+    grid-auto-rows: 50px; /* for items not defined with the template */
+
+    gap: 10px 10px; /* row-gap column-gap */
+
+}
+
+/* Using area templates */
+.container2 {
+    display: grid;
+    grid-template: repeat(3, 100px) / repeat(4, 1fr);
+    grid-template-areas: 
+        "header header header header"
+        "main main . sidebar"
+        "footer footer footer sidebar";
+
+    justify-items: stretch;
+    align-items: stretch;
+    /* place-items: align-items justify-items */
+
+    gap: 10px
+}
+
+.header {
+    grid-area: header;
+}
+
+.main {
+    grid-area: main;
+}
+
+.sidebar {
+    grid-area: sidebar;
+}
+
+.footer {
+    grid-area: footer;
+}
+
+/* Using lines instead of area templates */
+/* Can be used to overlap grid items */
+.container3 {
+    display: inline-grid;
+    grid-template: 100px 100px 100px 100px 100px / 100px 100px 100px 100px 100px;
+    background-color: lightblue; 
+}
+
+.room {
+    border: 1px solid;
+    text-align: center;
+}
+
+#living-room {
+    grid-column-start: 1;
+    grid-column-end: 6;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+
+#kitchen {
+    grid-column: 4 / 6;
+    grid-row: 3 / 6;
+}
+
+#bedroom {
+    grid-area: 3 / 2 / 5 / 4;
+}
+
+#bathroom {
+    grid-area: 3 / 1 / 6 / 2;
+}
+
+#closet {
+    grid-area: 5 / 2 / 6 / 4;
+}
