@@ -89,3 +89,69 @@
   font-size: 13px;
   font-weight: normal;
 }
+
+/* My changes */
+
+.container {
+  display: grid;
+  grid-template: 100px 75px 1fr 40px / 1fr 4fr;
+  grid-template-areas: 
+    "header header"
+    "sidebar nav"
+    "sidebar article"
+    "footer footer";
+  gap: 4px
+  
+}
+
+.header {
+  grid-area: header;
+  display: grid;
+  grid-template: 1fr / 1fr 4fr;
+  align-items: center;
+}
+
+.logo {
+  justify-self: start;
+}
+
+.menu ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.sidebar {
+  grid-area: sidebar;
+  display: grid;
+  grid-template: repeat(4, 1fr) / 1fr;
+  gap: 50px;
+  align-content: center;
+}
+
+.nav {
+  grid-area: nav;
+}
+
+.nav ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.article {
+  grid-area: article;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.article .card {
+  height: 200px;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+ul {
+  list-style-type: none;
+}
