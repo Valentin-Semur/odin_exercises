@@ -1,5 +1,5 @@
 {
-    "name": "project_name",
+    "name": "image-carrousel",
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
@@ -25,5 +25,5 @@
         "webpack-dev-server": "^5.1.0",
         "webpack-merge": "^6.0.1"
     },
-    "description": ""
+    "description": "Image carrousel"
 }
