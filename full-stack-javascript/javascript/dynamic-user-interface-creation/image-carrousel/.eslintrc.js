@@ -11,4 +11,8 @@ module.exports = {
       "sourceType": "module"
   },
   "ignorePatterns": ["dist", ".eslintrc.js", "webpack.*"],
+  "rules": {
+    "indent": ["error", 4],
+    "no-plusplus": "off",
+  }
 }

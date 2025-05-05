@@ -4,7 +4,10 @@
     "main": "index.js",
     "scripts": {
         "start": "webpack serve --open --config webpack.dev.js",
-        "build": "webpack --config webpack.prod.js"
+        "build": "webpack --config webpack.prod.js",
+        "lint": "eslint . --ext .js",
+        "lint:fix": "eslint . --ext .js --fix",
+        "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
     },
     "keywords": [],
     "author": "",
