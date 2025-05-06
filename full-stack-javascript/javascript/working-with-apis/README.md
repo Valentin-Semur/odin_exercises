@@ -59,7 +59,3 @@ This project demonstrates how to work with APIs by fetching GIFs from the Giphy 
 1. Enter a search term in the input field (e.g., "cats", "dogs", "funny").
 2. Click the "Fetch Gif" button.
 3. The application will display a GIF related to your search term.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
