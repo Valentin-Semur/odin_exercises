@@ -1,3 +1,4 @@
+// Fibonacci solved with iteration
 function fibs(num) {
     var fibonacciSequence = [0, 1];
     if (num == 1) {
@@ -12,6 +13,7 @@ function fibs(num) {
     return fibonacciSequence
 }
 
+// Fibonacci solved recursively
 function fibsRec(num, fibonacciSequence = [0, 1]) {
     if (num == 1) {
         return [0];
@@ -22,4 +24,3 @@ function fibsRec(num, fibonacciSequence = [0, 1]) {
     fibonacciSequence.push(fibonacciSequence[sequenceLength - 1] + fibonacciSequence[sequenceLength - 2]);
     return fibsRec(num - 1, fibonacciSequence)
 }
-
