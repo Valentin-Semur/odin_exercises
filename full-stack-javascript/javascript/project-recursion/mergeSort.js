@@ -11,13 +11,13 @@ function mergeSort(arrayToSort) {
     }
 
     // Sort left half
-    var leftHalf = mergeSort(arrayToSort.slice(0, arrayMiddle))
+    let leftHalf = mergeSort(arrayToSort.slice(0, arrayMiddle))
     
     // Sort right half
-    var rightHalf = mergeSort(arrayToSort.slice(arrayMiddle))
+    let rightHalf = mergeSort(arrayToSort.slice(arrayMiddle))
 
     // Merge the two together
-    var sortedArray = [];
+    let sortedArray = [];
     while (leftHalf.length != 0 || rightHalf.length != 0) {
         if (leftHalf[0] >= rightHalf[0] || leftHalf.length == 0) {
             sortedArray.push(rightHalf.shift())

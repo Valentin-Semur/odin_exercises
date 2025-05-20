@@ -6,7 +6,7 @@ function createNode(value = null) {
 }
 
 function createLinkedList() {
-    var listHead = null
+    let listHead = null
 
     const append = (value) => {
         const newNode = createNode(value)
@@ -14,7 +14,7 @@ function createLinkedList() {
             listHead = newNode
             return
         }
-        var current = listHead
+        let current = listHead
         while (current.next) {
             current = current.next
         }
@@ -33,8 +33,8 @@ function createLinkedList() {
             return 0
         }
 
-        var size = 0
-        var current = listHead
+        let size = 0
+        let current = listHead
         while (current) {
             size ++
             current = current.next
@@ -51,7 +51,7 @@ function createLinkedList() {
             return listHead
         }
 
-        var current = listHead
+        let current = listHead
         while (current.next) {
             current = current.next
         }
@@ -63,8 +63,8 @@ function createLinkedList() {
             return listHead
         }
 
-        var current = listHead
-        for (var i = 0; i < index; i++) {
+        let current = listHead
+        for (let i = 0; i < index; i++) {
             current = current.next
         }
         return current
@@ -77,8 +77,8 @@ function createLinkedList() {
         }
 
         const lastIndex = size() - 1
-        var current = listHead
-        for (var i = 0; i < lastIndex - 1; i++) {
+        let current = listHead
+        for (let i = 0; i < lastIndex - 1; i++) {
             current = current.next
         }
         current.next = null
@@ -90,7 +90,7 @@ function createLinkedList() {
             return false
         }
 
-        var current = listHead
+        let current = listHead
         while (current) {
             if (current.value == value) {
                 return true
@@ -105,8 +105,8 @@ function createLinkedList() {
             return null
         }
 
-        var current = listHead
-        var index = 0
+        let current = listHead
+        let index = 0
         while (current) {
             if (current.value == value) {
                 return index
@@ -118,8 +118,8 @@ function createLinkedList() {
     }
 
     const toString = () => {
-        var fullString = ""
-        var current = listHead
+        let fullString = ""
+        let current = listHead
 
         while (current) {
             fullString += `( ${current.value} ) -> `
