@@ -1,6 +1,7 @@
 export function HashMap() {
     let capacity = 16;
     let loadFactor = 0.75;
+    let size = 0;
 
     let buckets = new Array(capacity);
 
@@ -16,13 +17,7 @@ export function HashMap() {
     }
 
     const length = () => {
-        let count = 0;
-        for (let i = 0; i < capacity; i++) {
-            if (buckets[i]) {
-              count += Object.keys(buckets[i]).length;
-            }
-        }
-        return count;
+        return size;
     }
 
     const set = (key, value) => {
@@ -36,7 +31,12 @@ export function HashMap() {
             buckets[bucketNumber] = {};
 
         }
+
+        if (!(key in buckets[bucketNumber])) {
+            size++;
+        }
         buckets[bucketNumber][key] = value;
+
     }
 
     const get = (key) => {
@@ -59,6 +59,10 @@ export function HashMap() {
         let bucketNumber = hash(key);
         if (buckets[bucketNumber] && buckets[bucketNumber][key]) {
             delete buckets[bucketNumber][key];
+            size--;
+            if (Object.keys(buckets[bucketNumber]).length == 0) {
+                delete buckets[bucketNumber];
+            }
             return true
         }
         return false
@@ -66,7 +70,7 @@ export function HashMap() {
 
     const clear = () => {
         buckets = new Array(capacity);
-        return true;
+        size = 0;
     }
 
     const keys = () => {
