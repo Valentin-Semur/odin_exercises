@@ -87,10 +87,118 @@ const Tree = (array) => {
         return currentNode;
     }
 
-
     const deleteItem = (value) => {
         root = deleteItemRecursive(value, root);
-        return true
+        return true;
+    }
+
+    function findValueRecursive(value, currentNode) {
+        if (!currentNode) {
+            console.log("Value not found");
+            return null
+        }
+        if (currentNode.data === value) {
+            return currentNode;
+        } else if (currentNode.data > value) {
+            currentNode = findValueRecursive(value, currentNode.left);
+        } else if (currentNode.data < value) {
+            currentNode = findValueRecursive(value, currentNode.right)
+        }
+        
+        return currentNode
+    }
+
+    const findValue = (value) => {
+        let currentNode = root;
+        return findValueRecursive(value, currentNode);
+    }
+
+    const levelOrder = (callback) => {
+        let queue = [root];
+        while (queue.length != 0) {
+            let currentNode = queue.shift();
+            
+            callback(currentNode);
+
+            if (currentNode.left) { 
+                queue.push(currentNode.left);
+            }
+            if (currentNode.right) {
+                queue.push(currentNode.right);
+            }
+        }
+    }
+
+    function inOrderRecursive(currentNode, callback) {
+        if (currentNode === null) {
+            return;
+        }
+
+        inOrderRecursive(currentNode.left, callback);
+        callback(currentNode);
+        inOrderRecursive(currentNode.right, callback);
+    }
+
+    const inOrder = (callback) => {
+        inOrderRecursive(root, callback);
+    }
+
+    function preOrderRecursive(currentNode, callback) {
+        if (currentNode === null) {
+            return;
+        }
+
+        callback(currentNode);
+        preOrderRecursive(currentNode.left, callback);
+        preOrderRecursive(currentNode.right, callback);
+    }
+    
+    const preOrder = (callback) => {
+        preOrderRecursive(root, callback);
+    }
+
+    function postOrderRecursive(currentNode, callback) {
+        if (currentNode === null) {
+            return;
+        }
+
+        postOrderRecursive(currentNode.left, callback);
+        postOrderRecursive(currentNode.right, callback);
+        callback(currentNode);
+    }
+
+    const postOrder = (callback) => {
+        postOrderRecursive(root, callback);
+    }
+
+    function heightRecursive(node) {
+        if (node === null) {
+            return -1;
+        }
+    
+        let leftHeight = -1;
+        if (node.left) leftHeight = heightRecursive(node.left);
+        let rightHeight = -1;
+        if (node.right) rightHeight = heightRecursive(node.right);
+
+        return 1 + Math.max(leftHeight, rightHeight);
+    }
+
+    const height = (value) => {
+        let node = findValue(value);
+        return heightRecursive(node);
+    }
+
+    const depth = (value) => {
+        return
+    }
+
+    const isBalanced = () => {
+        return
+    }
+
+    const rebalance = () => {
+        return
     }
 
     const prettyPrint = (node, prefix = "", isLeft = true) => {
@@ -106,7 +214,7 @@ const Tree = (array) => {
         }
       };
 
-    return { root, prettyPrint, insert, deleteItem}
+    return { root, prettyPrint, insert, deleteItem, findValue, levelOrder, inOrder, preOrder, postOrder, height, depth, isBalanced, rebalance }
 }
 
 
@@ -114,5 +222,7 @@ const Tree = (array) => {
 const testArray = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 let testTree = Tree(testArray);
 testTree.prettyPrint(testTree.root)
-testTree.deleteItem(8)
-testTree.prettyPrint(testTree.root)
+
+//testTree.postOrder(node => console.log(node.data));
+
+console.log(testTree.height(8))
