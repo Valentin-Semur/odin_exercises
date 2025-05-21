@@ -1,6 +1,6 @@
 import { Node } from "./node.js";
 
-const Tree = (array) => {
+export const Tree = (array) => {
     let root = buildTree(array);
     
     function buildTree(array) {
@@ -43,8 +43,6 @@ const Tree = (array) => {
     }
 
     const insert = (value) => {
-        // Check if value does not already exists ?
-        
         root = insertRecursive(value, root);
         return true;
     }
@@ -94,7 +92,6 @@ const Tree = (array) => {
 
     function findValueRecursive(value, currentNode) {
         if (!currentNode) {
-            console.log("Value not found");
             return null
         }
         if (currentNode.data === value) {
@@ -189,16 +186,77 @@ const Tree = (array) => {
         return heightRecursive(node);
     }
 
+    function depthRecursive(value, currentNode, currentDepth) {
+        if (currentNode.data === value) {
+            return currentDepth;
+        } else if (!currentNode.left && !currentNode.right) {
+            return 0;
+        }
+
+        let leftDepth = 0;
+        if (currentNode.left) {
+            leftDepth = depthRecursive(value, currentNode.left, currentDepth + 1);
+        }
+        let rightDepth = 0;
+        if (currentNode.right) {
+            rightDepth = depthRecursive(value, currentNode.right, currentDepth + 1);
+        }
+
+
+        return Math.max(leftDepth, rightDepth);
+    }
+
     const depth = (value) => {
-        return
+        let currentNode = root;
+
+        if (findValue(value) === null) {
+            return null;
+        }
+
+        return depthRecursive(value, currentNode, 0);
+    }
+
+    function isBalancedRecursive(currentNode) {
+        let isBalancedLeft = true;
+        let heightLeft = 0;
+        if (currentNode.left) {
+            heightLeft = heightRecursive(currentNode.left);
+            isBalancedLeft = isBalancedRecursive(currentNode.left);
+        }
+
+        let isBalanceRight = true;
+        let heightRight = 0;
+        if (currentNode.right) {
+            heightRight = heightRecursive(currentNode.right);
+            isBalanceRight = isBalancedRecursive(currentNode.right);
+        }
+
+        if (heightLeft == -1) heightLeft = 0;
+        if (heightRight == -1) heightRight = 0;
+
+        let result = (Math.abs(heightLeft - heightRight) <= 1);
+
+        if (result && isBalanceRight && isBalancedLeft) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     const isBalanced = () => {
-        return
-    }
+        return isBalancedRecursive(root);
+    } 
 
     const rebalance = () => {
-        return
+        let treeValues = []
+        inOrder(node => treeValues.push(node.data));
+        
+        root = buildTree(treeValues);
+    }
+
+    const getRoot = () => {
+        return root;
     }
 
     const prettyPrint = (node, prefix = "", isLeft = true) => {
@@ -214,15 +272,5 @@ const Tree = (array) => {
         }
       };
 
-    return { root, prettyPrint, insert, deleteItem, findValue, levelOrder, inOrder, preOrder, postOrder, height, depth, isBalanced, rebalance }
+    return { getRoot, prettyPrint, insert, deleteItem, findValue, levelOrder, inOrder, preOrder, postOrder, height, depth, isBalanced, rebalance }
 }
-
-
-
-const testArray = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
-let testTree = Tree(testArray);
-testTree.prettyPrint(testTree.root)
-
-//testTree.postOrder(node => console.log(node.data));
-
-console.log(testTree.height(8))
