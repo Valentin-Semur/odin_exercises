@@ -87,3 +87,24 @@ export const ceasarCipher = () => {
 
     return { encode }
 }
+
+export const analyzeArray = (array) => {
+    if (array === undefined && !Array.isArray(array)) {
+        return { average: null, min: null, max: null, length: null };
+    }
+    if (array.length === 0) {
+        return { average: null, min: null, max: null, length: 0 };
+    }
+
+    const arrayLength = array.length;
+    const arrayAverage = array.reduce((acc, curr) => acc + curr, 0) / arrayLength;
+    const arrayMax = array.reduce((acc, curr) => (curr > acc ? curr : acc), -Infinity);
+    const arrayMin = array.reduce((acc, curr) => (curr < acc ? curr : acc), Infinity);
+
+    return {
+        average: arrayAverage,
+        min: arrayMin,
+        max: arrayMax,
+        length: arrayLength
+    }
+}

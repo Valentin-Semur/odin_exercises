@@ -1,4 +1,4 @@
-import { capitalize, reverseString, Calculator, ceasarCipher } from "../main.js";
+import { capitalize, reverseString, Calculator, ceasarCipher, analyzeArray } from "../main.js";
 
 describe('capitalize', () => {
     it('is defined', () => {
@@ -137,3 +137,31 @@ describe('ceasarCipher', () => {
     });
 
 })
+
+describe('analyzeArray', () => {
+
+    it('is defined', () => {
+        expect(analyzeArray).toBeDefined();
+    });
+
+    it('returns an object', () => {
+        expect(typeof(analyzeArray())).toEqual('object');
+    });
+
+    it('returns the correct average', () => {
+        expect(analyzeArray([1,8,3,4,2,6]).average).toEqual(4)
+    });
+
+    it('returns the correct min', () => {
+        expect(analyzeArray([1,8,3,4,2,6]).min).toEqual(1)
+    });
+
+    it('returns the correct max', () => {
+        expect(analyzeArray([1,8,3,4,2,6]).max).toEqual(8)
+    });
+
+    it('returns the correct lenght', () => {
+        expect(analyzeArray([1,8,3,4,2,6]).length).toEqual(6)
+    });
+
+}) 
