@@ -1,7 +1,7 @@
 import ListGroup from "./components/ListGroup";
 
 function App() {
-  const items = ["Paris", "New-York", "London", "Tokyo", "Madrid"];
+	const items = ["Paris", "New-York", "London", "Tokyo", "Madrid"];
 
 	return (
 		<div className="min-h-screen bg-gray-100 flex items-center justify-center">
